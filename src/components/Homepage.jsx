@@ -35,6 +35,11 @@ const Homepage = () => {
                 choferes={choferes}
                 setChoferes={setChoferes}
             />
+            <div className='flex justify-center mt-5'>
+                <p className='text-6xl py-3 px-10 bg-blackRussian-700 text-blackRussian-50 rounded-full'>
+                    ORDEN DE SALIDA
+                </p>
+            </div>
             <div className='flex flex-wrap gap-5 justify-center mt-5'>
                 {choferes.map((chofer, index) => (
                     <div key={index} className='w-2/12'>
