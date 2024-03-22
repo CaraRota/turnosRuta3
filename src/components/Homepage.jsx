@@ -36,7 +36,7 @@ const Homepage = () => {
                 setChoferes={setChoferes}
             />
             <div className='flex justify-center mt-5'>
-                <p className='text-6xl py-3 px-10 bg-blackRussian-700 text-blackRussian-50 rounded-full'>
+                <p className='text-5xl py-3 px-10 bg-blackRussian-700 text-blackRussian-50 rounded-full'>
                     ORDEN DE SALIDA
                 </p>
             </div>
