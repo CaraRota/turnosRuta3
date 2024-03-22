@@ -3,10 +3,12 @@ import Homepage from "./components/Homepage";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Background from "./components/uicomponents/Background";
 
 function App() {
     return (
         <>
+            <Background />
             <div className='mx-5'>
                 <ToastContainer
                     autoClose={5000}
