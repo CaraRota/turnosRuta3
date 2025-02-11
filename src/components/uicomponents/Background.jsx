@@ -7,7 +7,6 @@ import nightBackground from "../../assets/truckBG5.jpg";
 
 const handleBackground = () => {
     const currentHour = new Date().getHours();
-    console.log(currentHour);
     if (currentHour >= 6 && currentHour < 10) {
         return morningBackground;
     } else if (currentHour >= 10 && currentHour < 13) {
@@ -25,7 +24,6 @@ const Background = () => {
     const [background, setBackground] = useState(handleBackground());
 
     useEffect(() => {
-        console.log(background);
         const interval = setInterval(() => {
             setBackground(handleBackground());
         }, 3600000);
