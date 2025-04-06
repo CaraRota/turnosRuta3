@@ -97,11 +97,12 @@ const Homepage = () => {
                 choferes={choferes}
                 setChoferes={setChoferes}
             />
-            <div className='flex justify-center mt-5'>
-                <p className='text-5xl py-3 px-10 bg-blackRussian-700 text-blackRussian-50 rounded-full'>
+            <div className='flex justify-center mt-10'>
+                <p className='text-5xl font-semibold tracking-wide py-5 px-12 bg-blackRussian-700 text-blackRussian-50 rounded-2xl shadow-lg'>
                     ORDEN DE SALIDA
                 </p>
             </div>
+
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
