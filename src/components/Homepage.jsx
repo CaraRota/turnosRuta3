@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
-import DriverDetail from "./DriverDetail";
 import { toast } from "react-toastify";
 import {
     DndContext,
@@ -15,52 +14,11 @@ import {
     arrayMove,
     SortableContext,
     sortableKeyboardCoordinates,
-    useSortable,
     rectSortingStrategy,
 } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-
-// Sortable Driver Card component with smooth animations
-const SortableDriverCard = ({ chofer, index, handleDelete, isDragging }) => {
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
-        id: index.toString(),
-    });
-
-    const style = {
-        transform: CSS.Transform.toString(transform),
-        transition: transition || "transform 300ms ease, opacity 200ms ease",
-        opacity: isDragging ? 0.4 : 1,
-        zIndex: isDragging ? 10 : 1,
-        position: "relative",
-    };
-
-    return (
-        <div
-            ref={setNodeRef}
-            style={style}
-            {...attributes}
-            {...listeners}
-            className='w-2/12 transition-all duration-300'>
-            <div
-                className={`transform ${
-                    isDragging ? "scale-105" : "scale-100"
-                } transition-transform duration-200`}>
-                <DriverDetail chofer={chofer} index={index} handleDelete={handleDelete} />
-            </div>
-        </div>
-    );
-};
-
-// Component to render in the drag overlay
-const DragOverlayContent = ({ chofer, index, handleDelete }) => {
-    return (
-        <div className='w-2/12 shadow-xl'>
-            <div className='transform scale-105'>
-                <DriverDetail chofer={chofer} index={index} handleDelete={handleDelete} />
-            </div>
-        </div>
-    );
-};
+import SortableDriverCard from "./driver-card/SortableDriverCard";
+import DragOverlayContent from "./driver-card/DragOverlayContent";
+import { saveToLocalStorage } from "../utils/functions";
 
 const Homepage = () => {
     const [choferes, setChoferes] = useState([]);
@@ -93,10 +51,6 @@ const Homepage = () => {
         setChoferes(newChoferes);
         saveToLocalStorage(newChoferes);
         toast.error("Chofer eliminado correctamente");
-    };
-
-    const saveToLocalStorage = (data) => {
-        localStorage.setItem("choferes", JSON.stringify(data));
     };
 
     // Handle the start of drag
@@ -170,12 +124,7 @@ const Homepage = () => {
                 </div>
 
                 {/* Drag Overlay for smooth animations */}
-                <DragOverlay
-                    adjustScale={true}
-                    dropAnimation={{
-                        duration: 300,
-                        easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-                    }}>
+                <DragOverlay>
                     {activeChofer ? (
                         <DragOverlayContent
                             chofer={activeChofer.chofer}
